@@ -14,7 +14,6 @@
         integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- slider change duration -->
 <body>
     <div class="container">
         <h4 class="mt-2 text-center">Search Image for create slider</h4>
@@ -23,6 +22,9 @@
                 <input type="text" class="form-control" id="search" placeholder="Nature">
             </div>
             <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
+            <div>
+                <h3 id="error-message" class="text-danger text-custom"></h3>
+            </div>
         </div>
         <section class="images">
             <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
@@ -32,7 +34,7 @@
                 </div>
                 <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
             </div>
-
+            
             <!-- Spinner -->
             <div class="d-flex justify-content-center">
                 <button id="loading-spinner" class="btn btn-primary d-none" type="button" disabled>
