@@ -51,7 +51,7 @@ const selectItem = (event, img) => {
 var timer
 const createSlider = () => {
     // check slider image length
-    if (sliders.length < 1) {
+    if (sliders.length < 2) {
         alert('Select at least 2 images.')
         return;
     }
@@ -67,7 +67,14 @@ const createSlider = () => {
     document.querySelector('.main').style.display = 'block';
     // hide image aria
     imagesArea.style.display = 'none';
+
     const duration = document.getElementById('duration').value || 1000;
+    // console.log(duration);
+    if(duration<0){
+        alert('Please Input Positive Number')
+        return;
+    }
+
     sliders.forEach(slide => {
         let item = document.createElement('div')
         item.className = "slider-item";
