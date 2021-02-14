@@ -28,12 +28,14 @@ const showImages = (images) => {
   })
 
 }
+
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
 }
+
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
@@ -61,13 +63,12 @@ const createSlider = () => {
   <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
   <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
+
   sliderContainer.appendChild(prevNext)
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-
-  let duration = document.getElementById('duration').value | 1000;
-
+  const duration = document.getElementById('duration').value || 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -82,10 +83,12 @@ const createSlider = () => {
     changeSlide(slideIndex);
   }, duration);
 }
+
 // change slider index 
 const changeItem = index => {
   changeSlide(slideIndex += index);
 }
+
 // change slide item
 const changeSlide = (index) => {
 
@@ -94,16 +97,19 @@ const changeSlide = (index) => {
     slideIndex = items.length - 1
     index = slideIndex;
   };
+
   if (index >= items.length) {
     index = 0;
     slideIndex = 0;
   }
+
   items.forEach(item => {
     item.style.display = "none"
   })
 
   items[index].style.display = "block"
 }
+
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
@@ -111,6 +117,21 @@ searchBtn.addEventListener('click', function () {
   getImages(search.value)
   sliders.length = 0;
 })
+
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+
+function onEvent(event) {
+  if (event.key === "Enter") {
+      return false;
+  }
+};
+
+document.getElementById('search')
+  .addEventListener('keypress', function (event) {
+      if (event.key === 'Enter') {
+          document.getElementById('search-btn').click();
+      }
+  });
