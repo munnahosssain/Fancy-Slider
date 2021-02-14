@@ -38,7 +38,6 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
     let element = event.target;
     element.classList.toggle('added');
-
     let item = sliders.indexOf(img);
     if (item === -1) {
         sliders.push(img);
@@ -69,12 +68,10 @@ const createSlider = () => {
     imagesArea.style.display = 'none';
 
     const duration = document.getElementById('duration').value || 1000;
-    // console.log(duration);
     if(duration<0){
-        alert('Please Input Positive Number')
+        alert('Please a Input Positive Number')
         return;
     }
-
     sliders.forEach(slide => {
         let item = document.createElement('div')
         item.className = "slider-item";
